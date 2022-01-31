@@ -36,11 +36,18 @@
       }
     ],
     "import/prefer-default-export": "off",
-    "@typescript-eslint/explicit-function-return-type": [
+    "import/extensions": [
       "error",
+      "ignorePackages",
       {
-        "allowExpressions": true
+        "ts": "never",
+        "tsx": "never"
       }
     ]
+  },
+  "settings": {
+    "import/resolver": {
+      "typescript": {}
+    }
   }
 }
