@@ -24,6 +24,11 @@ export default createGlobalStyle`
     font: 400 1.6rem 'Lato';
   }
 
+  button {
+    color: #ffffff;
+    font: 400 1.5rem 'Lato';
+  }
+
   #root {
     font-family: 'Lato', sans-serif;
     font: 400 1.6rem 'Lato';
