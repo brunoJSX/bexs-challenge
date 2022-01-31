@@ -16,3 +16,24 @@ export function cardMask(value: string | number | undefined) {
 
   return `${matches[1]} ${matches[2]} ${matches[3]} ${matches[4]}`;
 }
+
+export function expirationMask(value: ICardExpiration | undefined) {
+  const month = `${value?.month}`.padStart(2, '0');
+  const year = `${value?.year}`.padStart(2, '0');
+  const date = `${month}${year}`;
+
+  if (!date) {
+    return '00/00';
+  }
+
+  const matches = `${date}`
+    .slice(0, 4)
+    .padEnd(4, '0')
+    .match(/^(\d{2})(\d{2})$/);
+
+  if (!matches) {
+    return date;
+  }
+
+  return `${matches[1]}/${matches[2]}`;
+}
