@@ -1,39 +1,69 @@
-import React, { useMemo } from 'react';
+import React, { useEffect, useState } from 'react';
+
+import VisaIcon from '../../assets/icons/visa_icon.svg';
+import MastercadIcon from '../../assets/icons/mastercard_icon.svg';
+
+import { cardMask, expirationMask } from './mask';
 
 import { Container } from './styles';
 
-type ICreditCardProps = {
-  cardNumber?: number;
-  name?: string;
-  expiration?: string;
+type IBrand = {
+  name: 'visa' | 'mastercard';
+  icon: string;
+  regexValidation: RegExp;
+  description: string;
 };
 
-export function CreditCard({ cardNumber, name, expiration }: ICreditCardProps) {
-  const cardNumberFormatted = useMemo(() => {
-    if (!cardNumber) {
-      return '0000 0000 0000 0000';
-    }
+const brands: IBrand[] = [
+  {
+    name: 'visa',
+    icon: VisaIcon,
+    regexValidation: /^4[0-9]{12}(?:[0-9]{3})/,
+    description: 'Brand of credit cards issued by Visa.',
+  },
+  {
+    name: 'mastercard',
+    icon: MastercadIcon,
+    regexValidation: /^5[1-5][0-9]{14}/,
+    description: 'Brand of credit cards issued by Mastercard.',
+  },
+];
 
-    const matches = `${cardNumber}`
-      .slice(0, 16)
-      .padEnd(16, '0')
-      .match(/^(\d{4})(\d{4})(\d{4})(\d{4})$/);
+export type ICardExpiration = { month: number; year: number };
 
-    if (!matches) {
-      return cardNumber;
-    }
+type ICreditCardProps = {
+  cardNumber?: number;
+  personName?: string;
+  expiration?: ICardExpiration;
+};
 
-    return `${matches[1]} ${matches[2]} ${matches[3]} ${matches[4]}`;
+export function CreditCard({
+  cardNumber,
+  personName,
+  expiration,
+}: ICreditCardProps) {
+  const [card, setCard] = useState<IBrand | undefined>(undefined);
+
+  useEffect(() => {
+    const cardSelected = brands.find(brand =>
+      brand.regexValidation.test(`${cardNumber}`.padEnd(16, '0')),
+    );
+
+    setCard(cardSelected);
   }, [cardNumber]);
 
   return (
     <Container>
-      <p>{cardNumberFormatted}</p>
+      <div>{card && <img src={card.icon} alt={card.description} />}</div>
 
-      <div>
-        <p>{name || 'NOME DO TITULAR'}</p>
-        <p>{expiration || '00/00'}</p>
-      </div>
+      <section>
+        <p>{cardMask(cardNumber)}</p>
+
+        <div>
+          <p>{personName?.toUpperCase() || 'NOME DO TITULAR'}</p>
+          <p>{expirationMask(expiration)}</p>
+        </div>
+      </section>
     </Container>
   );
 }

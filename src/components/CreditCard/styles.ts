@@ -3,25 +3,39 @@ import styled from 'styled-components';
 export const Container = styled.div`
   display: flex;
   flex-direction: column;
-  justify-content: flex-end;
+  justify-content: space-between;
 
   width: 280px;
   height: 171.98px;
-  border-radius: 15px;
+  border-radius: 1.5rem;
   color: #ffffff;
-  padding: 0 15px 30px 15px;
+  padding: 2rem 1.5rem 3rem 1.5rem;
 
   background: radial-gradient(
     73.06% 104.31% at 14.59% 58.06%,
-    #bfbfbf 0%,
-    #bfbfbf 0.01%,
-    #a8a8a8 33.7%,
-    #727272 100%
+    #5a7589 0%,
+    #436175 33.7%,
+    #315266 57.29%,
+    #124768 100%
   );
 
-  > div {
-    display: flex;
-    justify-content: space-between;
-    margin-top: 15px;
+  div:first-child {
+    img {
+      max-width: 5.5rem;
+    }
+  }
+
+  section {
+    div {
+      display: flex;
+      justify-content: space-between;
+      margin-top: 1.5rem;
+
+      p:first-child {
+        white-space: nowrap;
+        flex: 0 0 80%;
+        overflow: hidden;
+      }
+    }
   }
 `;
