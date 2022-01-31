@@ -34,13 +34,13 @@ export type ICardExpiration = { month: number; year: number };
 type ICreditCardProps = {
   cardNumber?: number;
   personName?: string;
-  expiration?: ICardExpiration;
+  cardExpiration?: ICardExpiration;
 };
 
 export function CreditCard({
   cardNumber,
   personName,
-  expiration,
+  cardExpiration,
 }: ICreditCardProps) {
   const [card, setCard] = useState<IBrand | undefined>(undefined);
 
@@ -50,10 +50,10 @@ export function CreditCard({
     );
 
     setCard(cardSelected);
-  }, [cardNumber]);
+  }, [cardExpiration, cardNumber]);
 
   return (
-    <Container>
+    <Container isDefinedBrand={!!card}>
       <div>{card && <img src={card.icon} alt={card.description} />}</div>
 
       <section>
@@ -61,7 +61,7 @@ export function CreditCard({
 
         <div>
           <p>{personName?.toUpperCase() || 'NOME DO TITULAR'}</p>
-          <p>{expirationMask(expiration)}</p>
+          <p>{expirationMask(cardExpiration)}</p>
         </div>
       </section>
     </Container>
