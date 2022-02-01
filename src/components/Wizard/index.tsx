@@ -1,10 +1,17 @@
-import React, { createContext, useCallback, useContext, useState } from 'react';
+import React, {
+  createContext,
+  PropsWithChildren,
+  useCallback,
+  useContext,
+  useMemo,
+  useState,
+} from 'react';
 import _ from 'lodash';
 
-import { Button } from '../Button';
+import { WizardProgressBar } from './WizardProgressBar';
+import { WizardFormStep } from './WizardFormStep';
 
 import { Container } from './styles';
-import { WizardProgressBar } from './WizardProgressBar';
 
 type IWizardStep = {
   title: React.ReactNode;
@@ -14,6 +21,8 @@ type IWizardStep = {
 interface IWizardContextData<T> {
   data: T;
   updateData(data: T): void;
+  nextStep(): void;
+  previousStep(): void;
   currentStep: number;
   steps: IWizardStep[];
 }
@@ -23,12 +32,28 @@ const WizardContext = createContext<IWizardContextData<any>>(
 );
 
 type IWizardProps = {
-  steps: IWizardStep[];
+  // hiddenProgressBar?: boolean;
 };
 
-function Wizard({ steps }: IWizardProps) {
+function Wizard({ children }: PropsWithChildren<IWizardProps>) {
   const [currentStep, setCurrentStep] = useState(0);
   const [data, setData] = useState({});
+  const steps = useMemo(() => {
+    const wizardSteps: IWizardStep[] = [];
+
+    React.Children.map(children, child => {
+      if (React.isValidElement(child)) {
+        if (child.type === WizardFormStep) {
+          wizardSteps.push({
+            title: child.props.title,
+            content: child,
+          });
+        }
+      }
+    });
+
+    return wizardSteps;
+  }, [children]);
 
   const updateData = useCallback((newData: any) => {
     setData(state => ({ ...state, ...newData }));
@@ -52,6 +77,8 @@ function Wizard({ steps }: IWizardProps) {
       value={{
         data,
         updateData,
+        nextStep,
+        previousStep,
         currentStep,
         steps,
       }}
@@ -61,17 +88,7 @@ function Wizard({ steps }: IWizardProps) {
           <WizardProgressBar />
         </header>
 
-        <main>{steps[currentStep].content}</main>
-
-        <footer>
-          <div>
-            {currentStep > 0 && <Button onClick={previousStep}>VOLTAR</Button>}
-          </div>
-
-          <div>
-            <Button onClick={nextStep}>CONTINUAR</Button>
-          </div>
-        </footer>
+        <main>{_.size(steps) >= 1 && steps[currentStep].content}</main>
       </Container>
     </WizardContext.Provider>
   );
