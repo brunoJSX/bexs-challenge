@@ -23,6 +23,9 @@ interface IWizardContextData<T> {
   updateData(data: T): void;
   nextStep(): void;
   previousStep(): void;
+  onNextStep?(data: T): void;
+  onPreviousStep?(data: T): void;
+  onFinish?(data: T): void;
   currentStep: number;
   steps: IWizardStep[];
 }
@@ -33,9 +36,17 @@ const WizardContext = createContext<IWizardContextData<any>>(
 
 type IWizardProps = {
   // hiddenProgressBar?: boolean;
+  onNextStep?(data: any): void;
+  onPreviousStep?(data: any): void;
+  onFinish?(data: any): void;
 };
 
-function Wizard({ children }: PropsWithChildren<IWizardProps>) {
+function Wizard({
+  children,
+  onNextStep,
+  onPreviousStep,
+  onFinish,
+}: PropsWithChildren<IWizardProps>) {
   const [currentStep, setCurrentStep] = useState(0);
   const [data, setData] = useState({});
   const steps = useMemo(() => {
@@ -60,16 +71,24 @@ function Wizard({ children }: PropsWithChildren<IWizardProps>) {
   }, []);
 
   const nextStep = useCallback(() => {
-    if (_.size(steps) - 1 === currentStep) return;
+    if (_.size(steps) - 1 === currentStep) {
+      if (onFinish) onFinish(data);
+
+      return;
+    }
+
+    if (onNextStep) onNextStep(data);
 
     setCurrentStep(state => state + 1);
-  }, [steps, currentStep]);
+  }, [steps, currentStep, onNextStep, data, onFinish]);
 
   const previousStep = useCallback(() => {
     if (currentStep === 0) return;
 
+    if (onPreviousStep) onPreviousStep(data);
+
     setCurrentStep(state => state - 1);
-  }, [currentStep]);
+  }, [currentStep, data, onPreviousStep]);
 
   return (
     <WizardContext.Provider
@@ -79,6 +98,9 @@ function Wizard({ children }: PropsWithChildren<IWizardProps>) {
         updateData,
         nextStep,
         previousStep,
+        onNextStep,
+        onPreviousStep,
+        onFinish,
         currentStep,
         steps,
       }}
