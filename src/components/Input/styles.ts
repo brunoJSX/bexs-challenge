@@ -41,6 +41,7 @@ export const Container = styled.div<IContainerProps>`
     height: 4.5rem;
 
     input {
+      color: #3c3c3c;
       height: 60%;
       border-bottom: 0.1rem solid #c6c6c6;
     }

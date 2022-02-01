@@ -8,7 +8,7 @@ import { Input } from '@components/Input';
 import { Button } from '@components/Button';
 import { useWizard } from '@components/Wizard';
 
-import { Container } from './styles';
+import { Container, Footer } from './styles';
 
 type IWizardFormStepProps = {
   // eslint-disable-next-line react/no-unused-prop-types
@@ -57,7 +57,7 @@ export function WizardFormStep({
           return child;
         })}
 
-        <footer>
+        <Footer isFirstStep={currentStep === 0}>
           <div>
             {currentStep > 0 && <Button onClick={previousStep}>VOLTAR</Button>}
           </div>
@@ -65,7 +65,7 @@ export function WizardFormStep({
           <div>
             <Button type="submit">CONTINUAR</Button>
           </div>
-        </footer>
+        </Footer>
       </form>
     </Container>
   );

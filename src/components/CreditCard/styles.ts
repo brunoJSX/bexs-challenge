@@ -11,9 +11,10 @@ export const Container = styled.div<IContainerProps>`
 
   width: 280px;
   height: 171.98px;
-  border-radius: 1.5rem;
+  border-radius: 1rem;
   color: #ffffff;
   padding: 2rem 1.5rem 3rem 1.5rem;
+  box-shadow: 0 0.6rem 1.2rem rgb(0 0 0 / 35%);
 
   background: radial-gradient(
     73.06% 104.31% at 14.59% 58.06%,

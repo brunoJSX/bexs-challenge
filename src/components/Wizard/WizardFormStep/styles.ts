@@ -2,13 +2,19 @@ import styled from 'styled-components';
 
 export const Container = styled.div`
   color: #ffffff;
+`;
 
-  footer {
-    display: flex;
-    justify-content: space-between;
+type IFooterProps = {
+  isFirstStep: boolean;
+};
 
-    button + button {
-      margin-left: 1rem;
-    }
+export const Footer = styled.footer<IFooterProps>`
+  display: flex;
+  justify-content: ${({ isFirstStep }) =>
+    isFirstStep ? 'center' : 'space-between'};
+  padding-top: 3.4rem;
+
+  button + button {
+    margin-left: 1rem;
   }
 `;
