@@ -1,20 +1,25 @@
-import React, { FormEvent, useCallback, useState } from 'react';
-import { UseControllerProps, useController } from 'react-hook-form';
+import React, {
+  FormEvent,
+  useCallback,
+  useState,
+  InputHTMLAttributes,
+} from 'react';
+import { UseFormRegister, FieldError } from 'react-hook-form';
 
 import masks, { IMask } from './masks';
 
 import { Container } from './styles';
 
-type IInputProps = UseControllerProps & {
+interface IInputProps extends InputHTMLAttributes<HTMLInputElement> {
   label: string;
   labelIconRight?: React.ReactNode;
   labelIconLeft?: React.ReactNode;
   className?: string;
   isDisabled?: boolean;
-  maxLength?: number;
-  onBlur?: () => void;
   mask?: IMask;
-};
+  register?: UseFormRegister<any>;
+  error?: FieldError;
+}
 
 export function Input({
   label,
@@ -22,24 +27,21 @@ export function Input({
   labelIconLeft,
   className,
   isDisabled,
-  maxLength,
-  onBlur,
   mask,
+  register,
+  error,
 
   ...restProps
 }: IInputProps) {
-  const { field, fieldState } = useController({ ...restProps });
-
   const [isFocused, setIsFocused] = useState(false);
-  const [isFilled, setIsFilled] = useState(!!field.value);
+  const [isFilled, setIsFilled] = useState(!!restProps.defaultValue);
 
-  field.onBlur = useCallback(() => {
+  // eslint-disable-next-line no-param-reassign
+  restProps.onBlur = useCallback((e: FormEvent<HTMLInputElement>) => {
     setIsFocused(false);
 
-    setIsFilled(!!field.value);
-
-    if (onBlur) onBlur();
-  }, [field.value, onBlur]);
+    setIsFilled(!!e.currentTarget.value);
+  }, []);
 
   const handleKeyUp = useCallback(
     (e: FormEvent<HTMLInputElement>) => mask && masks[mask](e),
@@ -50,7 +52,7 @@ export function Input({
     <Container
       isFocused={isFocused}
       isFilled={isFilled}
-      isErrored={!!fieldState.error}
+      isErrored={!!error}
       className={className}
     >
       <label htmlFor={label}>
@@ -63,12 +65,12 @@ export function Input({
         <input
           onFocus={() => setIsFocused(true)}
           disabled={isDisabled}
-          maxLength={maxLength}
           onKeyUp={mask && handleKeyUp}
-          {...field}
+          {...(register && restProps.name ? register(restProps.name) : {})}
+          {...restProps}
         />
 
-        {fieldState.error && <span>{fieldState.error.message}</span>}
+        {error && <span>{error.message}</span>}
       </div>
     </Container>
   );

@@ -9,6 +9,7 @@ type IFooterProps = {
 };
 
 export const Footer = styled.footer<IFooterProps>`
+  flex: 1;
   display: flex;
   justify-content: ${({ isFirstStep }) =>
     isFirstStep ? 'center' : 'space-between'};

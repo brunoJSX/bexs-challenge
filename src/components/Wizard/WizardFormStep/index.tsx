@@ -14,13 +14,19 @@ type IWizardFormStepProps = {
   // eslint-disable-next-line react/no-unused-prop-types
   title: string;
   schemaValidation?: Yup.AnyObjectSchema;
+  className?: string;
 };
 
 export function WizardFormStep({
   schemaValidation,
   children,
+  className,
 }: PropsWithChildren<IWizardFormStepProps>) {
-  const { control, handleSubmit, register } = useForm({
+  const {
+    handleSubmit,
+    register,
+    formState: { errors },
+  } = useForm({
     resolver: schemaValidation && yupResolver(schemaValidation),
   });
   const { currentStep, nextStep, previousStep, updateData } = useWizard();
@@ -34,7 +40,7 @@ export function WizardFormStep({
   );
 
   return (
-    <Container>
+    <Container className={className}>
       <form onSubmit={handleSubmit(onSubmit)}>
         {React.Children.map(children, child => {
           if (React.isValidElement(child)) {
@@ -42,7 +48,11 @@ export function WizardFormStep({
 
             if (child.props.name) {
               if (child.type === Input) {
-                Object.assign(props, { control, key: child.props.name });
+                Object.assign(props, {
+                  register,
+                  key: child.props.name,
+                  error: errors[child.props.name],
+                });
               } else if (child.type === 'input') {
                 Object.assign(props, {
                   ...register(child.props.name),
