@@ -1,7 +1,7 @@
 import React, { useEffect, useState } from 'react';
 
-import VisaIcon from '../../assets/icons/visa_icon.svg';
-import MastercadIcon from '../../assets/icons/mastercard_icon.svg';
+import VisaIcon from '@assets/icons/visa_icon.svg';
+import MastercadIcon from '@assets/icons/mastercard_icon.svg';
 
 import { cardMask, expirationMask } from './mask';
 

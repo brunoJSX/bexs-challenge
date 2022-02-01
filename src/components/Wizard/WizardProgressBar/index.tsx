@@ -2,9 +2,9 @@ import React from 'react';
 import { BsCheckCircleFill } from 'react-icons/bs';
 import { FiChevronRight } from 'react-icons/fi';
 
-import { useWizard } from '../index';
+import { useWizard } from '@components/Wizard';
 
-import { NumberCircleIcon } from '../../NumberCircleIcon';
+import { NumberCircleIcon } from '@components/NumberCircleIcon';
 
 import { Container } from './styles';
 
