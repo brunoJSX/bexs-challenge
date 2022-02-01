@@ -1,5 +1,7 @@
-import React, { useCallback, useState } from 'react';
+import React, { FormEvent, useCallback, useState } from 'react';
 import { UseControllerProps, useController } from 'react-hook-form';
+
+import masks, { IMask } from './masks';
 
 import { Container } from './styles';
 
@@ -8,6 +10,7 @@ type IInputProps = UseControllerProps & {
   className?: string;
   isDisabled?: boolean;
   onBlur?: () => void;
+  mask?: IMask;
 };
 
 export function Input({
@@ -15,6 +18,7 @@ export function Input({
   className,
   isDisabled,
   onBlur,
+  mask,
 
   ...restProps
 }: IInputProps) {
@@ -31,6 +35,11 @@ export function Input({
     if (onBlur) onBlur();
   }, [field.value, onBlur]);
 
+  const handleKeyUp = useCallback(
+    (e: FormEvent<HTMLInputElement>) => mask && masks[mask](e),
+    [mask],
+  );
+
   return (
     <Container
       isFocused={isFocused}
@@ -44,6 +53,7 @@ export function Input({
         <input
           onFocus={() => setIsFocused(true)}
           disabled={isDisabled}
+          onKeyUp={mask && handleKeyUp}
           {...field}
         />
 
