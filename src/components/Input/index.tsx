@@ -11,6 +11,7 @@ type IInputProps = UseControllerProps & {
   labelIconLeft?: React.ReactNode;
   className?: string;
   isDisabled?: boolean;
+  maxLength?: number;
   onBlur?: () => void;
   mask?: IMask;
 };
@@ -21,6 +22,7 @@ export function Input({
   labelIconLeft,
   className,
   isDisabled,
+  maxLength,
   onBlur,
   mask,
 
@@ -61,6 +63,7 @@ export function Input({
         <input
           onFocus={() => setIsFocused(true)}
           disabled={isDisabled}
+          maxLength={maxLength}
           onKeyUp={mask && handleKeyUp}
           {...field}
         />
