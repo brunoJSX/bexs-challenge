@@ -15,6 +15,8 @@ export const Container = styled.div<IContainerProps>`
   flex-direction: column;
 
   label {
+    display: flex;
+    align-items: center;
     color: #c6c6c6;
     pointer-events: none;
     position: absolute;
@@ -22,6 +24,10 @@ export const Container = styled.div<IContainerProps>`
 
     transform-origin: top left;
     transition: all 0.3s ease-out;
+
+    > svg {
+      margin-left: 0.5rem;
+    }
   }
 
   &:focus-within label {

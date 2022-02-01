@@ -7,6 +7,8 @@ import { Container } from './styles';
 
 type IInputProps = UseControllerProps & {
   label: string;
+  labelIconRight?: React.ReactNode;
+  labelIconLeft?: React.ReactNode;
   className?: string;
   isDisabled?: boolean;
   onBlur?: () => void;
@@ -15,6 +17,8 @@ type IInputProps = UseControllerProps & {
 
 export function Input({
   label,
+  labelIconRight,
+  labelIconLeft,
   className,
   isDisabled,
   onBlur,
@@ -47,7 +51,11 @@ export function Input({
       isErrored={!!fieldState.error}
       className={className}
     >
-      <label htmlFor={label}>{label}</label>
+      <label htmlFor={label}>
+        {labelIconLeft && labelIconLeft}
+        {label}
+        {labelIconRight && labelIconRight}
+      </label>
 
       <div>
         <input
