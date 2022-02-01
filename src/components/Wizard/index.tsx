@@ -4,9 +4,9 @@ import _ from 'lodash';
 import { Button } from '../Button';
 
 import { Container } from './styles';
+import { WizardProgressBar } from './WizardProgressBar';
 
 type IWizardStep = {
-  icon: React.ReactNode;
   title: React.ReactNode;
   content: React.ReactNode;
 };
@@ -57,11 +57,20 @@ function Wizard({ steps }: IWizardProps) {
       }}
     >
       <Container>
+        <header>
+          <WizardProgressBar />
+        </header>
+
         <main>{steps[currentStep].content}</main>
 
         <footer>
-          <Button onClick={previousStep}>VOLTAR</Button>
-          <Button onClick={nextStep}>CONTINUAR</Button>
+          <div>
+            {currentStep > 0 && <Button onClick={previousStep}>VOLTAR</Button>}
+          </div>
+
+          <div>
+            <Button onClick={nextStep}>CONTINUAR</Button>
+          </div>
         </footer>
       </Container>
     </WizardContext.Provider>
