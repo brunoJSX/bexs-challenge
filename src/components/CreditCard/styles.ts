@@ -14,7 +14,8 @@ export const Container = styled.div<IContainerProps>`
   border-radius: 1rem;
   color: #ffffff;
   padding: 2rem 1.5rem 3rem 1.5rem;
-  box-shadow: 0 0.6rem 1.2rem rgb(0 0 0 / 35%);
+  filter: drop-shadow(0px 3px 6px rgba(0, 0, 0, 0.349));
+  text-shadow: 0px 1px 2px rgba(0, 0, 0, 0.25);
 
   background: radial-gradient(
     73.06% 104.31% at 14.59% 58.06%,
@@ -43,10 +44,18 @@ export const Container = styled.div<IContainerProps>`
   }
 
   section {
-    div {
+    > p {
+      font-size: 1.4rem;
+    }
+
+    > div {
       display: flex;
       justify-content: space-between;
       margin-top: 1.5rem;
+
+      > p {
+        font-size: 1.2rem;
+      }
 
       p:first-child {
         white-space: nowrap;
