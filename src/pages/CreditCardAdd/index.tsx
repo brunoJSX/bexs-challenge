@@ -8,6 +8,7 @@ import CreditCardIcon from '@assets/icons/credit_card_icon.svg';
 import { CreditCard } from '@components/CreditCard';
 import { Input } from '@components/Input';
 
+import { Select } from '@components/Select';
 import {
   Container,
   Header,
@@ -25,6 +26,21 @@ const schema = Yup.object({
   cardCvv: Yup.string().required(),
   installments: Yup.string(),
 }).required();
+
+const installmentsOptions = [
+  { value: 1, label: '1x R$ 12.000,00 à vista' },
+  { value: 2, label: '2x de R$ 6.000,00 sem juros' },
+  { value: 3, label: '3x de R$ 4.000,00 sem juros' },
+  { value: 4, label: '4x de R$ 3.000,00  sem juros' },
+  { value: 5, label: '5x de R$ 2.400,00  sem juros' },
+  { value: 6, label: '6x de R$ 2.000,00  sem juros' },
+  { value: 7, label: '7x de R$ 1.714,29  sem juros' },
+  { value: 8, label: '8x de R$ 1.500,00  sem juros' },
+  { value: 9, label: '9x de R$ 1.333,33  sem juros' },
+  { value: 10, label: '10x de R$ 1.200,00  sem juros' },
+  { value: 11, label: '11x de R$ 1.090,90  sem juros' },
+  { value: 12, label: '12x de R$ 1.000,00  sem juros' },
+];
 
 export function CreditCardAdd() {
   const [cvvIsFocused, setCvvIsFocused] = useState(false);
@@ -108,10 +124,10 @@ export function CreditCardAdd() {
               onChange={e => setCardCvv(e.currentTarget.value)}
             />
 
-            <Input
+            <Select
               label="Número de parcelas"
               name="installments"
-              defaultValue=""
+              options={installmentsOptions}
             />
           </CreditCardStep>
 
