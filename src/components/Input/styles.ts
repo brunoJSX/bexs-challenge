@@ -17,7 +17,7 @@ export const Container = styled.div<IContainerProps>`
   label {
     display: flex;
     align-items: center;
-    color: #c6c6c6;
+    color: ${({ isFocused }) => (isFocused ? '#4bde95' : '#c6c6c6')};
     pointer-events: none;
     position: absolute;
     transform: translate(0, 0.5rem) scale(1);
