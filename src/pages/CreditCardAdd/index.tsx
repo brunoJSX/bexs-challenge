@@ -28,6 +28,7 @@ export function CreditCardAdd() {
     month: 0,
     year: 0,
   });
+  const [cardCvv, setCardCvv] = useState('');
 
   const handleExpirationDate = useCallback((e: FormEvent<HTMLInputElement>) => {
     const { value } = e.currentTarget;
@@ -52,16 +53,19 @@ export function CreditCardAdd() {
           <img src={CreditCardIcon} alt="Credit card icon" />
           <h2>Adicione um novo cartão de crédito</h2>
         </div>
+
+        <div>
+          <CreditCard
+            cardNumber={cardNumber}
+            personName={personName}
+            cardExpiration={cardExpiration}
+            cardCvv={cardCvv}
+            side={cvvIsFocused ? 'back' : 'front'}
+          />
+        </div>
       </Header>
 
       <Content>
-        <CreditCard
-          cardNumber={cardNumber}
-          personName={personName}
-          cardExpiration={cardExpiration}
-          side={cvvIsFocused ? 'back' : 'front'}
-        />
-
         <Wizard hiddenProgressBar>
           <CreditCardStep title="Carrinho">
             <Input
@@ -94,6 +98,7 @@ export function CreditCardAdd() {
               maxLength={3}
               onFocus={() => setCvvIsFocused(true)}
               onBlur={() => setCvvIsFocused(false)}
+              onChange={e => setCardCvv(e.currentTarget.value)}
             />
 
             <Input

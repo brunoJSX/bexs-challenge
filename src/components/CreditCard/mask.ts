@@ -37,3 +37,20 @@ export function expirationMask(value: ICardExpiration | undefined) {
 
   return `${matches[1]}/${matches[2]}`;
 }
+
+export function cvvMask(value: string | number | undefined) {
+  if (!value) {
+    return '***';
+  }
+
+  const matches = `${value}`
+    .slice(0, 3)
+    .padEnd(3, '*')
+    .match(/^([0-9|*]{3})$/);
+
+  if (!matches) {
+    return value;
+  }
+
+  return matches[1];
+}

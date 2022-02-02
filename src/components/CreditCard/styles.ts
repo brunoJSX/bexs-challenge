@@ -104,6 +104,14 @@ export const CardBackContainer = styled.div<ICardProps>`
   border-radius: 1rem;
   filter: drop-shadow(0px 3px 6px rgba(0, 0, 0, 0.349));
 
+  > span {
+    position: absolute;
+
+    top: 48%;
+    left: 50%;
+    color: #3c3c3c;
+  }
+
   background: url(${CardBackEmpty}),
     radial-gradient(
       73.06% 104.31% at 14.59% 58.06%,

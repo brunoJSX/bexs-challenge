@@ -3,7 +3,7 @@ import React, { useEffect, useState } from 'react';
 import VisaIcon from '@assets/icons/visa_icon.svg';
 import MastercadIcon from '@assets/icons/mastercard_icon.svg';
 
-import { cardMask, expirationMask } from './mask';
+import { cardMask, expirationMask, cvvMask } from './mask';
 
 import { Container, CardFrontContainer, CardBackContainer } from './styles';
 
@@ -35,6 +35,7 @@ type ICreditCardProps = {
   cardNumber?: number;
   personName?: string;
   cardExpiration?: ICardExpiration;
+  cardCvv?: string;
   side?: 'front' | 'back';
 };
 
@@ -42,7 +43,8 @@ export function CreditCard({
   cardNumber,
   personName,
   cardExpiration,
-  side = 'front',
+  cardCvv,
+  side = 'back',
 }: ICreditCardProps) {
   const [card, setCard] = useState<IBrand | undefined>(undefined);
 
@@ -70,7 +72,9 @@ export function CreditCard({
           </section>
         </CardFrontContainer>
 
-        <CardBackContainer isDefinedBrand={!!card}>0</CardBackContainer>
+        <CardBackContainer isDefinedBrand={!!card}>
+          <span>{cvvMask(cardCvv)}</span>
+        </CardBackContainer>
       </div>
     </Container>
   );
