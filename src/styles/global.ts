@@ -33,6 +33,11 @@ export default createGlobalStyle`
     font: 400 1.5rem 'Lato';
   }
 
+  body {
+    width: 100%;
+    height: 100%;
+  }
+
   #root {
     font-family: 'Lato', sans-serif;
     font: 400 1.6rem 'Lato';
