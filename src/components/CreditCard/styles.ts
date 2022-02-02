@@ -11,6 +11,8 @@ type IContainerProps = {
 
 export const Container = styled.div<IContainerProps>`
   perspective: 1000px;
+  width: 100vw;
+  height: calc(100vw * 0.6142);
 
   > div {
     transition: transform 0.6s;
@@ -18,8 +20,8 @@ export const Container = styled.div<IContainerProps>`
     transform: ${({ side }) =>
     side === 'back' ? 'rotateY(180deg)' : 'rotateY(0deg)'};
 
-    width: 280px;
-    height: 171.98px;
+    width: 100%;
+    height: 100%;
     color: #ffffff;
   }
 `;
@@ -49,6 +51,8 @@ export const CardFrontContainer = styled.div<ICardProps>`
       #a8a8a8 33.7%,
       #727272 100%
     );
+  background-size: contain;
+  background-repeat: no-repeat;
 
   ${({ isDefinedBrand }) =>
     isDefinedBrand &&
@@ -108,6 +112,8 @@ export const CardBackContainer = styled.div<ICardProps>`
       #a8a8a8 33.7%,
       #727272 100%
     );
+  background-size: contain;
+  background-repeat: no-repeat;
 
   ${({ isDefinedBrand }) =>
     isDefinedBrand &&
