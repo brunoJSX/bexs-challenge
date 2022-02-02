@@ -5,7 +5,7 @@ import MastercadIcon from '@assets/icons/mastercard_icon.svg';
 
 import { cardMask, expirationMask } from './mask';
 
-import { Container } from './styles';
+import { Container, CardFrontContainer, CardBackContainer } from './styles';
 
 type IBrand = {
   name: 'visa' | 'mastercard';
@@ -35,12 +35,14 @@ type ICreditCardProps = {
   cardNumber?: number;
   personName?: string;
   cardExpiration?: ICardExpiration;
+  side?: 'front' | 'back';
 };
 
 export function CreditCard({
   cardNumber,
   personName,
   cardExpiration,
+  side = 'front',
 }: ICreditCardProps) {
   const [card, setCard] = useState<IBrand | undefined>(undefined);
 
@@ -53,17 +55,23 @@ export function CreditCard({
   }, [cardExpiration, cardNumber]);
 
   return (
-    <Container isDefinedBrand={!!card}>
-      <div>{card && <img src={card.icon} alt={card.description} />}</div>
+    <Container side={side}>
+      <div>
+        <CardFrontContainer isDefinedBrand={!!card}>
+          <div>{card && <img src={card.icon} alt={card.description} />}</div>
 
-      <section>
-        <p>{cardMask(cardNumber)}</p>
+          <section>
+            <p>{cardMask(cardNumber)}</p>
 
-        <div>
-          <p>{personName?.toUpperCase() || 'NOME DO TITULAR'}</p>
-          <p>{expirationMask(cardExpiration)}</p>
-        </div>
-      </section>
+            <div>
+              <p>{personName?.toUpperCase() || 'NOME DO TITULAR'}</p>
+              <p>{expirationMask(cardExpiration)}</p>
+            </div>
+          </section>
+        </CardFrontContainer>
+
+        <CardBackContainer isDefinedBrand={!!card}>0</CardBackContainer>
+      </div>
     </Container>
   );
 }

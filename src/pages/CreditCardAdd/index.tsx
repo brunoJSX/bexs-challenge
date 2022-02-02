@@ -21,6 +21,7 @@ const schema = Yup.object({
 }).required();
 
 export function CreditCardAdd() {
+  const [cvvIsFocused, setCvvIsFocused] = useState(false);
   const [cardNumber, setCardNumber] = useState(0);
   const [personName, setPersonName] = useState('');
   const [cardExpiration, setCardExpiration] = useState({
@@ -44,7 +45,7 @@ export function CreditCardAdd() {
       <Header>
         <div>
           <FiChevronLeft size={26} />
-          <h1>Etapa 2 de 3</h1>
+          <h1>Etapa 1 de 3</h1>
         </div>
 
         <div>
@@ -58,10 +59,11 @@ export function CreditCardAdd() {
           cardNumber={cardNumber}
           personName={personName}
           cardExpiration={cardExpiration}
+          side={cvvIsFocused ? 'back' : 'front'}
         />
 
         <Wizard hiddenProgressBar>
-          <CreditCardStep title="Carrinho" schemaValidation={schema}>
+          <CreditCardStep title="Carrinho">
             <Input
               label="Número do cartão"
               name="cardNumber"
@@ -90,6 +92,8 @@ export function CreditCardAdd() {
               name="cardCvv"
               defaultValue=""
               maxLength={3}
+              onFocus={() => setCvvIsFocused(true)}
+              onBlur={() => setCvvIsFocused(false)}
             />
 
             <Input

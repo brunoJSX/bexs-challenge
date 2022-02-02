@@ -1,0 +1,30 @@
+<svg width="364" height="225" viewBox="0 0 364 225" fill="none" xmlns="http://www.w3.org/2000/svg">
+<g clip-path="url(#clip0)">
+<rect y="-1.00549" width="365" height="226.229" fill="url(#paint0_radial)"/>
+<path d="M364 38.8892H0V87.5445H364V38.8892Z" fill="#1C1C1C"/>
+<path d="M227.089 106.838H166.038V131.867H227.089V106.838Z" fill="white"/>
+<g opacity="0.9">
+<path opacity="0.9" d="M166.037 106.838H40.721V108.379H166.037V106.838Z" fill="white"/>
+<path opacity="0.9" d="M166.037 109.448H40.721V110.989H166.037V109.448Z" fill="white"/>
+<path opacity="0.9" d="M166.037 112.058H40.721V113.598H166.037V112.058Z" fill="white"/>
+<path opacity="0.9" d="M166.037 114.668H40.721V116.208H166.037V114.668Z" fill="white"/>
+<path opacity="0.9" d="M166.037 117.278H40.721V118.818H166.037V117.278Z" fill="white"/>
+<path opacity="0.9" d="M166.037 119.887H40.721V121.428H166.037V119.887Z" fill="white"/>
+<path opacity="0.9" d="M166.037 122.497H40.721V124.038H166.037V122.497Z" fill="white"/>
+<path opacity="0.9" d="M166.037 125.107H40.721V126.648H166.037V125.107Z" fill="white"/>
+<path opacity="0.9" d="M166.037 127.717H40.721V129.257H166.037V127.717Z" fill="white"/>
+<path opacity="0.9" d="M166.037 130.327H40.721V131.867H166.037V130.327Z" fill="white"/>
+</g>
+</g>
+<defs>
+<radialGradient id="paint0_radial" cx="0" cy="0" r="1" gradientUnits="userSpaceOnUse" gradientTransform="translate(90.3693 148.634) scale(266.784 236.161)">
+<stop stop-color="#5A7589"/>
+<stop offset="0.323" stop-color="#436175"/>
+<stop offset="0.549" stop-color="#315266"/>
+<stop offset="1" stop-color="#124768"/>
+</radialGradient>
+<clipPath id="clip0">
+<rect width="364" height="225" fill="white"/>
+</clipPath>
+</defs>
+</svg>
