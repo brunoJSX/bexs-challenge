@@ -8,7 +8,7 @@ export const Container = styled.div`
 
   background-color: #ffffff;
 
-  @media (max-width: 568px) {
+  @media (max-width: 1024px) {
     flex-direction: column;
   }
 `;
@@ -23,11 +23,12 @@ export const Header = styled.header`
   background-color: #4bde95;
   padding: 3rem 1.9rem 0 1.9rem;
 
-  @media (min-width: 568px) {
+  @media (min-width: 1024px) {
     width: 31.7vw;
     height: 100vh;
     max-height: unset;
     max-width: 36rem;
+    padding: 5rem 1.9rem 0 1.9rem;
   }
 
   > div:first-child {
@@ -74,10 +75,15 @@ export const Header = styled.header`
     right: 0;
 
     @media (min-width: 480px) {
-      bottom: calc(((77.77vw * 0.6142) * 0.55) * (-1));
+      bottom: calc((22.6rem * 0.45) * (-1));
+
+      > div {
+        max-width: 37.5rem;
+        max-height: 22.6rem;
+      }
     }
 
-    @media (min-width: 568px) {
+    @media (min-width: 1024px) {
       position: relative;
       width: calc(31rem * 1.58);
       bottom: unset;
@@ -85,18 +91,22 @@ export const Header = styled.header`
 
       > div {
         height: 31rem;
+        max-width: unset;
+        max-height: unset;
       }
     }
   }
 `;
 
 export const Content = styled.main`
+  width: 100%;
   display: flex;
   flex-direction: column;
-  padding: 7.74rem 4rem;
+  padding: 10rem 4rem 0;
 
-  @media (min-width: 568px) {
+  @media (min-width: 1024px) {
     padding-left: calc(31.7vw * 0.51 + 4rem);
+    padding-top: 5rem;
   }
 `;
 
@@ -109,6 +119,14 @@ export const CreditCardStep = styled(WizardFormStep)`
     > div:nth-child(3),
     > div:nth-child(4) {
       width: 48%;
+    }
+  }
+
+  @media (min-width: 1024px) {
+    padding-top: 5.2rem;
+
+    footer {
+      justify-content: flex-end;
     }
   }
 `;

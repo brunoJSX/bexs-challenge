@@ -40,7 +40,7 @@ export default createGlobalStyle`
 
   #root {
     font-family: 'Lato', sans-serif;
-    font: 400 1.6rem 'Lato';
+    font: 400 1.6rem 'Lato', sans-serif;
 
     -webkit-font-smoothing: antialiased;
   }
