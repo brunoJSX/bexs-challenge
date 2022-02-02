@@ -17,7 +17,7 @@ export const Container = styled.div<IContainerProps>`
   label {
     display: flex;
     align-items: center;
-    color: ${({ isFocused }) => (isFocused ? '#4bde95' : '#c6c6c6')};
+    color: #c6c6c6;
     pointer-events: none;
     position: absolute;
     transform: translate(0, 0.5rem) scale(1);
@@ -31,6 +31,7 @@ export const Container = styled.div<IContainerProps>`
   }
 
   &:focus-within label {
+    color: #4bde95;
     transform: translate(0, -1rem) scale(0.75);
   }
 
@@ -43,7 +44,8 @@ export const Container = styled.div<IContainerProps>`
     input {
       color: #3c3c3c;
       height: 60%;
-      border-bottom: 0.1rem solid #c6c6c6;
+      border-bottom: 0.1rem solid
+        ${({ isFocused }) => (isFocused ? '#4bde95' : '#c6c6c6')};
     }
 
     span:last-child {
