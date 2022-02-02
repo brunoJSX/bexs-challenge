@@ -21,6 +21,7 @@ interface IInputProps extends InputHTMLAttributes<HTMLInputElement> {
   register?: UseFormRegister<any>;
   error?: FieldError;
   onChange?(event: FormEvent<HTMLInputElement>): void;
+  onBlur?(event: FormEvent<HTMLInputElement>): void;
 }
 
 export function Input({
@@ -33,18 +34,12 @@ export function Input({
   register,
   error,
   onChange,
+  onBlur,
 
   ...restProps
 }: IInputProps) {
   const [isFocused, setIsFocused] = useState(false);
   const [isFilled, setIsFilled] = useState(!!restProps.defaultValue);
-
-  // eslint-disable-next-line no-param-reassign
-  restProps.onBlur = useCallback((e: FormEvent<HTMLInputElement>) => {
-    setIsFocused(false);
-
-    setIsFilled(!!e.currentTarget.value);
-  }, []);
 
   const handleKeyUp = useCallback(
     (e: FormEvent<HTMLInputElement>) => mask && masks[mask](e),
@@ -60,10 +55,11 @@ export function Input({
         onBlur: (e: FormEvent<HTMLInputElement>) => {
           setIsFocused(false);
           setIsFilled(!!e.currentTarget.value);
+          if (onBlur) onBlur(e);
         },
       }),
     };
-  }, [onChange, register, restProps.name]);
+  }, [onBlur, onChange, register, restProps.name]);
 
   return (
     <Container
