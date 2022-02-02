@@ -3,6 +3,7 @@ import React, {
   useCallback,
   useState,
   InputHTMLAttributes,
+  useMemo,
 } from 'react';
 import { UseFormRegister, FieldError } from 'react-hook-form';
 
@@ -19,6 +20,7 @@ interface IInputProps extends InputHTMLAttributes<HTMLInputElement> {
   mask?: IMask;
   register?: UseFormRegister<any>;
   error?: FieldError;
+  onChange?(event: FormEvent<HTMLInputElement>): void;
 }
 
 export function Input({
@@ -30,6 +32,7 @@ export function Input({
   mask,
   register,
   error,
+  onChange,
 
   ...restProps
 }: IInputProps) {
@@ -47,6 +50,20 @@ export function Input({
     (e: FormEvent<HTMLInputElement>) => mask && masks[mask](e),
     [mask],
   );
+
+  const inputProps = useMemo(() => {
+    if (!(register && restProps.name)) return {};
+
+    return {
+      ...register(restProps.name, {
+        onChange,
+        onBlur: (e: FormEvent<HTMLInputElement>) => {
+          setIsFocused(false);
+          setIsFilled(!!e.currentTarget.value);
+        },
+      }),
+    };
+  }, [onChange, register, restProps.name]);
 
   return (
     <Container
@@ -66,7 +83,7 @@ export function Input({
           onFocus={() => setIsFocused(true)}
           disabled={isDisabled}
           onKeyUp={mask && handleKeyUp}
-          {...(register && restProps.name ? register(restProps.name) : {})}
+          {...inputProps}
           {...restProps}
         />
 
