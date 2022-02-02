@@ -6,7 +6,6 @@ import Yup from '@utils/schemaValidator';
 import CreditCardIcon from '@assets/icons/credit_card_icon.svg';
 
 import { CreditCard } from '@components/CreditCard';
-import { WizardFormStep } from '@components/Wizard/WizardFormStep';
 import { Input } from '@components/Input';
 
 import {
@@ -15,6 +14,8 @@ import {
   Content,
   WizardStyled,
   CreditCardStep,
+  PaymentStep,
+  ConfirmationStep,
 } from './styles';
 
 const schema = Yup.object({
@@ -83,6 +84,7 @@ export function CreditCardAdd() {
             <Input
               label="Nome (igual ao cartão)"
               name="personName"
+              maxLength={35}
               defaultValue=""
               onChange={e => setPersonName(e.currentTarget.value)}
             />
@@ -113,15 +115,13 @@ export function CreditCardAdd() {
             />
           </CreditCardStep>
 
-          <WizardFormStep title="Pagamento">
-            <Input label="Name2" name="name2" defaultValue="" />
-            <Input label="Sobrenome" name="lastName2" defaultValue="" />
-          </WizardFormStep>
+          <PaymentStep title="Pagamento">
+            <p>Payment step in development</p>
+          </PaymentStep>
 
-          <WizardFormStep title="Confirmação">
-            <Input label="Name3" name="name3" defaultValue="" />
-            <Input label="Sobrenome" name="lastName3" defaultValue="" />
-          </WizardFormStep>
+          <ConfirmationStep title="Confirmação">
+            <p>Confirmation step in development</p>
+          </ConfirmationStep>
         </WizardStyled>
       </Content>
     </Container>
