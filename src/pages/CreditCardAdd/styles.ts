@@ -3,18 +3,34 @@ import styled from 'styled-components';
 import { WizardFormStep } from '@components/Wizard/WizardFormStep';
 
 export const Container = styled.div`
+  width: 100%;
+  display: flex;
+
   background-color: #ffffff;
+
+  @media (max-width: 568px) {
+    flex-direction: column;
+  }
 `;
 
 export const Header = styled.header`
+  position: relative;
+  height: 38vh;
+  max-height: 26.9rem;
   display: flex;
   flex-direction: column;
-  height: 35vh;
   color: #ffffff;
   background-color: #4bde95;
   padding: 3rem 1.9rem 0 1.9rem;
 
-  div:first-child {
+  @media (min-width: 568px) {
+    width: 31.7vw;
+    height: 100vh;
+    max-height: unset;
+    max-width: 36rem;
+  }
+
+  > div:first-child {
     display: flex;
     align-items: center;
     margin-bottom: 3.1rem;
@@ -27,7 +43,7 @@ export const Header = styled.header`
     }
   }
 
-  div:last-child {
+  > div:nth-child(2) {
     display: flex;
     padding: 0 3rem;
 
@@ -42,13 +58,46 @@ export const Header = styled.header`
       font-size: 1.6rem;
     }
   }
+
+  > div:last-child {
+    position: absolute;
+    display: flex;
+    justify-content: center;
+
+    > div {
+      width: 77.77vw;
+      height: calc(77.77vw * 0.6142);
+    }
+
+    bottom: calc(((77.77vw * 0.6142) * 0.45) * (-1));
+    left: 0;
+    right: 0;
+
+    @media (min-width: 480px) {
+      bottom: calc(((77.77vw * 0.6142) * 0.55) * (-1));
+    }
+
+    @media (min-width: 568px) {
+      position: relative;
+      width: calc(31rem * 1.58);
+      bottom: unset;
+      padding-top: 3.2rem;
+
+      > div {
+        height: 31rem;
+      }
+    }
+  }
 `;
 
 export const Content = styled.main`
   display: flex;
   flex-direction: column;
-  padding: 0 4rem;
-  margin-top: -11rem;
+  padding: 7.74rem 4rem;
+
+  @media (min-width: 568px) {
+    padding-left: calc(31.7vw * 0.51 + 4rem);
+  }
 `;
 
 export const CreditCardStep = styled(WizardFormStep)`
