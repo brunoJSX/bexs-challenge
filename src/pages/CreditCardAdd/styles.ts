@@ -106,16 +106,26 @@ export const Content = styled.main`
   padding: 10rem 4rem 0;
 
   @media (min-width: 1024px) {
-    padding-left: calc(31.7vw * 0.51 + 4rem);
+    /* padding-left: calc(31.7vw * 0.51 + 4rem); */
+    padding-left: 20.3rem;
     padding-top: 5rem;
   }
 `;
 
 export const WizardStyled = styled(Wizard)`
-  @media (max-width: 1024px) {
+  /* border: 1px solid red; */
+  > header {
+    display: none;
+  }
+
+  @media (min-width: 1024px) {
+    /* width: 50rem; */
+    max-width: 70rem;
+
     > header {
-      display: none;
+      display: unset;
     }
+  }
   }
 `;
 
@@ -137,5 +147,23 @@ export const CreditCardStep = styled(WizardFormStep)`
     footer {
       justify-content: flex-end;
     }
+  }
+`;
+
+export const PaymentStep = styled(WizardFormStep)`
+  color: #3c3c3c;
+  text-align: center;
+
+  @media (min-width: 1024px) {
+    padding-top: 5.2rem;
+  }
+`;
+
+export const ConfirmationStep = styled(WizardFormStep)`
+  color: #3c3c3c;
+  text-align: center;
+
+  @media (min-width: 1024px) {
+    padding-top: 5.2rem;
   }
 `;
