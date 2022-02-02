@@ -1,5 +1,6 @@
 import styled from 'styled-components';
 
+import { Wizard } from '@components/Wizard';
 import { WizardFormStep } from '@components/Wizard/WizardFormStep';
 
 export const Container = styled.div`
@@ -107,6 +108,14 @@ export const Content = styled.main`
   @media (min-width: 1024px) {
     padding-left: calc(31.7vw * 0.51 + 4rem);
     padding-top: 5rem;
+  }
+`;
+
+export const WizardStyled = styled(Wizard)`
+  @media (max-width: 1024px) {
+    > header {
+      display: none;
+    }
   }
 `;
 

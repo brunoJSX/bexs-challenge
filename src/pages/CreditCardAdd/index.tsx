@@ -6,11 +6,16 @@ import Yup from '@utils/schemaValidator';
 import CreditCardIcon from '@assets/icons/credit_card_icon.svg';
 
 import { CreditCard } from '@components/CreditCard';
-import { Wizard } from '@components/Wizard';
 import { WizardFormStep } from '@components/Wizard/WizardFormStep';
 import { Input } from '@components/Input';
 
-import { Container, Header, Content, CreditCardStep } from './styles';
+import {
+  Container,
+  Header,
+  Content,
+  WizardStyled,
+  CreditCardStep,
+} from './styles';
 
 const schema = Yup.object({
   cardNumber: Yup.string().required(),
@@ -66,8 +71,8 @@ export function CreditCardAdd() {
       </Header>
 
       <Content>
-        <Wizard hiddenProgressBar>
-          <CreditCardStep title="Carrinho">
+        <WizardStyled>
+          <CreditCardStep title="Carrinho" schemaValidation={schema}>
             <Input
               label="Número do cartão"
               name="cardNumber"
@@ -117,7 +122,7 @@ export function CreditCardAdd() {
             <Input label="Name3" name="name3" defaultValue="" />
             <Input label="Sobrenome" name="lastName3" defaultValue="" />
           </WizardFormStep>
-        </Wizard>
+        </WizardStyled>
       </Content>
     </Container>
   );
