@@ -110,6 +110,13 @@ export const CardBackContainer = styled.div<ICardProps>`
     top: 48%;
     left: 50%;
     color: #3c3c3c;
+
+    ${({ isDefinedBrand }) =>
+    isDefinedBrand &&
+    css`
+        top: 64%;
+        left: 64%;
+      `}
   }
 
   background: url(${CardBackEmpty}),
