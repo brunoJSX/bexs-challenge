@@ -18,13 +18,14 @@ const brands: IBrand[] = [
   {
     name: 'visa',
     icon: VisaIcon,
-    regexValidation: /^4[0-9]{12}(?:[0-9]{3})/,
+    regexValidation: /^4[0-9]{12}(?:[0-9]{3})?$/,
     description: 'Brand of credit cards issued by Visa.',
   },
   {
     name: 'mastercard',
     icon: MastercadIcon,
-    regexValidation: /^5[1-5][0-9]{14}/,
+    regexValidation:
+      /^5[1-5][0-9]{14}$|^2(?:2(?:2[1-9]|[3-9][0-9])|[3-6][0-9][0-9]|7(?:[01][0-9]|20))[0-9]{12}$/,
     description: 'Brand of credit cards issued by Mastercard.',
   },
 ];
@@ -49,9 +50,16 @@ export function CreditCard({
   const [card, setCard] = useState<IBrand | undefined>(undefined);
 
   useEffect(() => {
-    const cardSelected = brands.find(brand =>
-      brand.regexValidation.test(`${cardNumber}`.padEnd(16, '0')),
-    );
+    const cardSelected = brands.find(brand => {
+      if (!cardNumber) return false;
+
+      const cardNumberFormatted = cardNumber
+        .toString()
+        .replace(/\D/g, '')
+        .padEnd(16, '0');
+
+      return brand.regexValidation.test(cardNumberFormatted);
+    });
 
     setCard(cardSelected);
   }, [cardExpiration, cardNumber]);
