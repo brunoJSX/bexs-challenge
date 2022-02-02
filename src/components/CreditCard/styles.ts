@@ -65,6 +65,8 @@ export const CardFrontContainer = styled.div<ICardProps>`
           #315266 57.29%,
           #124768 100%
         );
+      background-size: contain;
+      background-repeat: no-repeat;
     `}
 
   div:first-child {
@@ -141,5 +143,7 @@ export const CardBackContainer = styled.div<ICardProps>`
           #315266 57.29%,
           #124768 100%
         );
+      background-size: contain;
+      background-repeat: no-repeat;
     `}
 `;
