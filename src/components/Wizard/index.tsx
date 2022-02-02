@@ -39,6 +39,7 @@ type IWizardProps = {
   onNextStep?(data: any): void;
   onPreviousStep?(data: any): void;
   onFinish?(data: any): void;
+  className?: string;
 };
 
 function Wizard({
@@ -47,6 +48,7 @@ function Wizard({
   onNextStep,
   onPreviousStep,
   onFinish,
+  className,
 }: PropsWithChildren<IWizardProps>) {
   const [currentStep, setCurrentStep] = useState(0);
   const [data, setData] = useState({});
@@ -95,26 +97,26 @@ function Wizard({
   }, [currentStep, data, onPreviousStep]);
 
   return (
-    <WizardContext.Provider
-      // eslint-disable-next-line react/jsx-no-constructed-context-values
-      value={{
-        data,
-        updateData,
-        nextStep,
-        previousStep,
-        onNextStep,
-        onPreviousStep,
-        onFinish,
-        currentStep,
-        steps,
-      }}
-    >
-      <Container>
+    <Container className={className}>
+      <WizardContext.Provider
+        // eslint-disable-next-line react/jsx-no-constructed-context-values
+        value={{
+          data,
+          updateData,
+          nextStep,
+          previousStep,
+          onNextStep,
+          onPreviousStep,
+          onFinish,
+          currentStep,
+          steps,
+        }}
+      >
         <header>{!hiddenProgressBar && <WizardProgressBar />}</header>
 
         <main>{_.size(steps) >= 1 && steps[currentStep].content}</main>
-      </Container>
-    </WizardContext.Provider>
+      </WizardContext.Provider>
+    </Container>
   );
 }
 
