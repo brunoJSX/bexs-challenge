@@ -35,7 +35,7 @@ const WizardContext = createContext<IWizardContextData<any>>(
 );
 
 type IWizardProps = {
-  // hiddenProgressBar?: boolean;
+  hiddenProgressBar?: boolean;
   onNextStep?(data: any): void;
   onPreviousStep?(data: any): void;
   onFinish?(data: any): void;
@@ -43,6 +43,7 @@ type IWizardProps = {
 
 function Wizard({
   children,
+  hiddenProgressBar,
   onNextStep,
   onPreviousStep,
   onFinish,
@@ -54,7 +55,10 @@ function Wizard({
 
     React.Children.map(children, child => {
       if (React.isValidElement(child)) {
-        if (child.type === WizardFormStep) {
+        if (
+          child.type === WizardFormStep ||
+          child.type.target === WizardFormStep
+        ) {
           wizardSteps.push({
             title: child.props.title,
             content: child,
@@ -106,9 +110,7 @@ function Wizard({
       }}
     >
       <Container>
-        <header>
-          <WizardProgressBar />
-        </header>
+        <header>{!hiddenProgressBar && <WizardProgressBar />}</header>
 
         <main>{_.size(steps) >= 1 && steps[currentStep].content}</main>
       </Container>
