@@ -8,6 +8,7 @@ import { Input } from '@components/Input';
 import { Button } from '@components/Button';
 import { useWizard } from '@components/Wizard';
 
+import { Select } from '@components/Select';
 import { Container, Footer } from './styles';
 
 type IWizardFormStepProps = {
@@ -26,6 +27,7 @@ export function WizardFormStep({
     handleSubmit,
     register,
     formState: { errors },
+    control,
   } = useForm({
     resolver: schemaValidation && yupResolver(schemaValidation),
   });
@@ -52,6 +54,11 @@ export function WizardFormStep({
                   register,
                   key: child.props.name,
                   error: errors[child.props.name],
+                });
+              } else if (child.type === Select) {
+                Object.assign(props, {
+                  control,
+                  key: child.props.name,
                 });
               } else if (child.type === 'input') {
                 Object.assign(props, {
