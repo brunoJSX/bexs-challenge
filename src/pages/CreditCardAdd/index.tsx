@@ -69,6 +69,7 @@ export function CreditCardAdd() {
         <div>
           <FiChevronLeft size={26} />
           <h1>Etapa 1 de 3</h1>
+          <h1>Alterar forma de pagamento</h1>
         </div>
 
         <div>

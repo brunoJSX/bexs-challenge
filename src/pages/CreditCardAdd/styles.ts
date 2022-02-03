@@ -37,11 +37,25 @@ export const Header = styled.header`
     align-items: center;
     margin-bottom: 3.1rem;
 
-    h1 {
+    > h1 {
       flex: 1;
       text-align: center;
       align-self: center;
       font-size: 1.3rem;
+    }
+
+    > h1:nth-child(3) {
+      display: none;
+    }
+
+    @media (min-width: 1024px) {
+      > h1:nth-child(2) {
+        display: none;
+      }
+
+      > h1:nth-child(3) {
+        display: unset;
+      }
     }
   }
 
@@ -113,19 +127,16 @@ export const Content = styled.main`
 `;
 
 export const WizardStyled = styled(Wizard)`
-  /* border: 1px solid red; */
   > header {
     display: none;
   }
 
   @media (min-width: 1024px) {
-    /* width: 50rem; */
     max-width: 70rem;
 
     > header {
       display: unset;
     }
-  }
   }
 `;
 
