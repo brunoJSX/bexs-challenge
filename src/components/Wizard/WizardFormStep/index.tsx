@@ -23,6 +23,8 @@ export function WizardFormStep({
   children,
   className,
 }: PropsWithChildren<IWizardFormStepProps>) {
+  const { currentStep, nextStep, previousStep, updateData, data } =
+    useWizard<{ [key: string]: any }>();
   const {
     handleSubmit,
     register,
@@ -30,12 +32,12 @@ export function WizardFormStep({
     control,
   } = useForm({
     resolver: schemaValidation && yupResolver(schemaValidation),
+    defaultValues: data,
   });
-  const { currentStep, nextStep, previousStep, updateData } = useWizard();
 
   const onSubmit = useCallback(
-    (data: any) => {
-      updateData(data);
+    (formData: any) => {
+      updateData(formData);
       nextStep();
     },
     [nextStep, updateData],

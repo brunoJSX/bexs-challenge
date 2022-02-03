@@ -160,11 +160,11 @@ export function CreditCardAdd() {
           </CreditCardStep>
 
           <PaymentStep title="Pagamento">
-            <p>Payment step in development</p>
+            <p>Payment step</p>
           </PaymentStep>
 
           <ConfirmationStep title="Confirmação">
-            <p>Confirmation step in development</p>
+            <p>Confirmation step</p>
           </ConfirmationStep>
         </WizardStyled>
       </Content>
