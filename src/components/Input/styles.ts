@@ -44,8 +44,11 @@ export const Container = styled.div<IContainerProps>`
     input {
       color: #3c3c3c;
       height: 60%;
-      border-bottom: 0.1rem solid
-        ${({ isFocused }) => (isFocused ? '#4bde95' : '#c6c6c6')};
+      border-bottom: 0.1rem solid #c6c6c6;
+    }
+
+    input:focus {
+      border-bottom: 0.1rem solid #4bde95;
     }
 
     span:last-child {
