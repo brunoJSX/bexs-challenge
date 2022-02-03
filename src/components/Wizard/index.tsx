@@ -3,6 +3,7 @@ import React, {
   PropsWithChildren,
   useCallback,
   useContext,
+  useEffect,
   useMemo,
   useState,
 } from 'react';
@@ -26,6 +27,7 @@ interface IWizardContextData<T> {
   onNextStep?(data: T): void;
   onPreviousStep?(data: T): void;
   onFinish?(data: T): void;
+  getCurrentStep?(step: number): void;
   currentStep: number;
   steps: IWizardStep[];
 }
@@ -39,6 +41,7 @@ type IWizardProps = {
   onNextStep?(data: any): void;
   onPreviousStep?(data: any): void;
   onFinish?(data: any): void;
+  getCurrentStep?(step: number): void;
   className?: string;
 };
 
@@ -48,6 +51,7 @@ function Wizard({
   onNextStep,
   onPreviousStep,
   onFinish,
+  getCurrentStep,
   className,
 }: PropsWithChildren<IWizardProps>) {
   const [currentStep, setCurrentStep] = useState(0);
@@ -71,6 +75,10 @@ function Wizard({
 
     return wizardSteps;
   }, [children]);
+
+  useEffect(() => {
+    if (getCurrentStep) getCurrentStep(currentStep + 1);
+  }, [currentStep, getCurrentStep]);
 
   const updateData = useCallback((newData: any) => {
     setData(state => ({ ...state, ...newData }));
@@ -108,6 +116,7 @@ function Wizard({
           onNextStep,
           onPreviousStep,
           onFinish,
+          getCurrentStep,
           currentStep,
           steps,
         }}
