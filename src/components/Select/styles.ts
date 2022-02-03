@@ -54,6 +54,7 @@ export const Container = styled.div<IContainerProps>`
 
     &__menu {
       z-index: 2;
+      color: #3c3c3c;
     }
   }
 `;
