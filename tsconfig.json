@@ -34,9 +34,9 @@
       "@pages/*": [
         "pages/*"
       ],
-      "@routes/*": [
-        "routes/*"
-      ],
+      "@services/*": [
+        "services/*"
+      ]
     },
   },
   "include": [
