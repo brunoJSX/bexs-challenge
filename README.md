@@ -14,9 +14,14 @@
 
 ## Summary
 
+- [About](#about)
 - [Technologies](#technologies)
 - [Requirements](#requirements)
 - [Getting Started](#getting-started)
+
+## About
+
+Project developed for React frontend vacancy in Bexs Pay.
 
 ## Technologies
 
