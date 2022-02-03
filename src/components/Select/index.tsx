@@ -31,7 +31,7 @@ export function Select({
     (props: any) => {
       return (
         <>
-          <Label isFloating={props?.isFocused || props?.hasValue}>
+          <Label isFocused={props?.isFocused} isFilled={props?.hasValue}>
             {label}
           </Label>
           <components.Control {...props} />

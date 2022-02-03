@@ -13,11 +13,16 @@ export const Container = styled.div<IContainerProps>`
     &__control {
       min-height: auto;
       border: 0;
+      box-shadow: none;
       border-radius: 0;
       border-bottom: 0.1rem solid #c6c6c6;
 
       &--is-focused {
-        box-shadow: none;
+        border-bottom: 0.1rem solid #4bde95;
+
+        &:hover {
+          border-bottom: 0.1rem solid #4bde95;
+        }
 
         .react-select__indicator {
           > svg {
@@ -49,10 +54,15 @@ export const Container = styled.div<IContainerProps>`
   }
 `;
 
-export const Label = styled.label<{ isFloating?: boolean }>`
+type ILabelProps = {
+  isFocused: boolean;
+  isFilled: boolean;
+};
+
+export const Label = styled.label<ILabelProps>`
   position: absolute;
 
-  color: #c6c6c6;
+  color: ${({ isFocused }) => (isFocused ? '#4bde95' : '#c6c6c6')};
   pointer-events: none;
   transform: translate(0, 0.5rem) scale(1);
 
@@ -61,10 +71,9 @@ export const Label = styled.label<{ isFloating?: boolean }>`
 
   z-index: 1;
 
-  ${({ isFloating }) =>
-    isFloating &&
+  ${({ isFocused, isFilled }) =>
+    (isFocused || isFilled) &&
     css`
-      color: #c6c6c6;
       transform: translate(0, -1rem) scale(0.75);
     `}
 `;
