@@ -45,7 +45,7 @@ export function CreditCard({
   personName,
   cardExpiration,
   cardCvv,
-  side = 'back',
+  side = 'front',
 }: ICreditCardProps) {
   const [card, setCard] = useState<IBrand | undefined>(undefined);
 
