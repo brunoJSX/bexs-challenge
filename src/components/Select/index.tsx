@@ -6,7 +6,7 @@ import ReactSelect, {
   Props as ReactSelectProps,
 } from 'react-select';
 
-import { Container, Label } from './styles';
+import { Container, Label, Error } from './styles';
 
 interface ISelectProps extends ReactSelectProps<OptionProps> {
   name: string;
@@ -62,7 +62,7 @@ export function Select({
         defaultValue={defaultValue}
       />
 
-      {errors && <p>{get(errors, name)?.message}</p>}
+      {errors && <Error>{get(errors, name)?.message}</Error>}
     </Container>
   );
 }

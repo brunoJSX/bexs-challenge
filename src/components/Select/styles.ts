@@ -77,3 +77,9 @@ export const Label = styled.label<ILabelProps>`
       transform: translate(0, -1rem) scale(0.75);
     `}
 `;
+
+export const Error = styled.span`
+  color: #eb5757;
+  font-size: 1.2rem;
+  margin-top: 0.5rem;
+`;
