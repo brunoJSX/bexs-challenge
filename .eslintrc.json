@@ -30,6 +30,7 @@
     "react/require-default-props": "off",
     "@typescript-eslint/no-explicit-any": "off",
     "react/jsx-props-no-spreading": "off",
+    "no-underscore-dangle": "off",
     "react/jsx-filename-extension": [
       1,
       {
