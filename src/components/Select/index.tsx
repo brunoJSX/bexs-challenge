@@ -46,7 +46,7 @@ export function Select({
       <Controller
         name={name}
         control={controlForm}
-        render={({ field }) => (
+        render={({ field: { onChange, value, ...restFieldProps } }) => (
           <ReactSelect
             classNamePrefix="react-select"
             placeholder=""
@@ -55,8 +55,21 @@ export function Select({
               IndicatorSeparator: null,
             }}
             options={options}
+            defaultValue={
+              options?.find((option: any) => option.value === value) ||
+              defaultValue
+            }
+            onChange={(option: any) => {
+              if (rest.isMulti) {
+                onChange(option?.map((opt: any) => opt.value));
+
+                return;
+              }
+
+              onChange(option?.value);
+            }}
             {...rest}
-            {...field}
+            {...restFieldProps}
           />
         )}
         defaultValue={defaultValue}
