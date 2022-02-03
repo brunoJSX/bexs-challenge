@@ -53,6 +53,7 @@ export function CreditCardAdd() {
     year: 0,
   });
   const [cardCvv, setCardCvv] = useState('');
+  const [wizardCurrentStep, setWizardCurrentStep] = useState(0);
 
   const { addCreditCard } = useUserApi();
 
@@ -95,7 +96,7 @@ export function CreditCardAdd() {
       <Header>
         <div>
           <FiChevronLeft size={26} />
-          <h1>Etapa 1 de 3</h1>
+          <h1>Etapa {wizardCurrentStep} de 3</h1>
           <h1>Alterar forma de pagamento</h1>
         </div>
 
@@ -116,7 +117,10 @@ export function CreditCardAdd() {
       </Header>
 
       <Content>
-        <WizardStyled onFinish={handleFinishWizard}>
+        <WizardStyled
+          onFinish={handleFinishWizard}
+          getCurrentStep={v => setWizardCurrentStep(v)}
+        >
           <CreditCardStep title="Carrinho" schemaValidation={schema}>
             <Input
               label="Número do cartão"
