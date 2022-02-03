@@ -24,7 +24,7 @@ const schema = Yup.object({
   personName: Yup.string().required(),
   cardExpiration: Yup.string().required(),
   cardCvv: Yup.string().required(),
-  installments: Yup.string(),
+  installments: Yup.number().required(),
 }).required();
 
 const installmentsOptions = [
