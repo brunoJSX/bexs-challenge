@@ -22,10 +22,10 @@ import {
 } from './styles';
 
 const schema = Yup.object({
-  cardNumber: Yup.string().required(),
-  personName: Yup.string().required(),
+  cardNumber: Yup.string().min(19).required(),
+  personName: Yup.string().max(35).required(),
   cardExpiration: Yup.string().required(),
-  cardCvv: Yup.string().required(),
+  cardCvv: Yup.string().min(3).required(),
   installments: Yup.number().required(),
 }).required();
 
