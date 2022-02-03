@@ -31,7 +31,7 @@ export const Container = styled.div<IContainerProps>`
   }
 
   &:focus-within label {
-    color: #4bde95;
+    color: ${({ isErrored }) => (isErrored ? '#eb5757' : '#4bde95')};
     transform: translate(0, -1rem) scale(0.75);
   }
 
@@ -44,30 +44,21 @@ export const Container = styled.div<IContainerProps>`
     input {
       color: #3c3c3c;
       height: 60%;
-      border-bottom: 0.1rem solid #c6c6c6;
+      border-bottom: 0.1rem solid
+        ${({ isErrored }) => (isErrored ? '#eb5757' : '#c6c6c6')};
     }
 
     input:focus {
-      border-bottom: 0.1rem solid #4bde95;
+      border-bottom: 0.1rem solid
+        ${({ isErrored }) => (isErrored ? '#eb5757' : '#4bde95')};
     }
 
     span:last-child {
       font-size: 1.2rem;
       margin-top: 0.5rem;
+      color: ${({ isErrored }) => (isErrored ? '#eb5757' : '#ffffff')};
     }
   }
-
-  ${props =>
-    props.isErrored &&
-    css`
-      input {
-        border-color: #eb5757;
-      }
-
-      span:last-child {
-        color: #eb5757;
-      }
-    `}
 
   ${props =>
     (props.isFilled || props.isFocused) &&
