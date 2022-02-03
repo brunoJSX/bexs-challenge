@@ -24,25 +24,28 @@ export function Select({
   defaultValue,
   ...rest
 }: ISelectProps) {
-  // eslint-disable-next-line no-underscore-dangle
-  const { errors } = controlForm._formState;
+  const error = get(controlForm._formState.errors, name);
 
   const ControlComponent = useCallback(
     (props: any) => {
       return (
         <>
-          <Label isFocused={props?.isFocused} isFilled={props?.hasValue}>
+          <Label
+            isFocused={props?.isFocused}
+            isFilled={props?.hasValue}
+            isErrored={!!error}
+          >
             {label}
           </Label>
           <components.Control {...props} />
         </>
       );
     },
-    [label],
+    [error, label],
   );
 
   return (
-    <Container className={className}>
+    <Container className={className} isErrored={!!error}>
       <Controller
         name={name}
         control={controlForm}
@@ -75,7 +78,7 @@ export function Select({
         defaultValue={defaultValue}
       />
 
-      {errors && <Error>{get(errors, name)?.message}</Error>}
+      {error && <Error>{error.message}</Error>}
     </Container>
   );
 }

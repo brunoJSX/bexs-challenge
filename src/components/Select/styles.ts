@@ -15,13 +15,17 @@ export const Container = styled.div<IContainerProps>`
       border: 0;
       box-shadow: none;
       border-radius: 0;
-      border-bottom: 0.1rem solid #c6c6c6;
+
+      border-bottom: 0.1rem solid
+        ${({ isErrored }) => (isErrored ? '#eb5757' : '#c6c6c6')};
 
       &--is-focused {
-        border-bottom: 0.1rem solid #4bde95;
+        border-bottom: 0.1rem solid
+          ${({ isErrored }) => (isErrored ? '#eb5757' : '#4bde95')};
 
         &:hover {
-          border-bottom: 0.1rem solid #4bde95;
+          border-bottom: 0.1rem solid
+            ${({ isErrored }) => (isErrored ? '#eb5757' : '#4bde95')};
         }
 
         .react-select__indicator {
@@ -57,6 +61,7 @@ export const Container = styled.div<IContainerProps>`
 type ILabelProps = {
   isFocused: boolean;
   isFilled: boolean;
+  isErrored: boolean;
 };
 
 export const Label = styled.label<ILabelProps>`
@@ -75,6 +80,13 @@ export const Label = styled.label<ILabelProps>`
     (isFocused || isFilled) &&
     css`
       transform: translate(0, -1rem) scale(0.75);
+    `}
+
+  ${({ isFocused, isErrored }) =>
+    isFocused &&
+    isErrored &&
+    css`
+      color: #eb5757;
     `}
 `;
 
