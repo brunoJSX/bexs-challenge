@@ -71,11 +71,11 @@ export function CreditCard({
           <div>{card && <img src={card.icon} alt={card.description} />}</div>
 
           <section>
-            <p>{cardMask(cardNumber)}</p>
+            <h1>{cardMask(cardNumber)}</h1>
 
             <div>
-              <p>{personName?.toUpperCase() || 'NOME DO TITULAR'}</p>
-              <p>{expirationMask(cardExpiration)}</p>
+              <h2>{personName?.toUpperCase() || 'NOME DO TITULAR'}</h2>
+              <h2>{expirationMask(cardExpiration)}</h2>
             </div>
           </section>
         </CardFrontContainer>

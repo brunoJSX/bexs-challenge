@@ -122,6 +122,14 @@ export const Header = styled.header`
         height: 31rem;
         max-width: unset;
         max-height: unset;
+
+        h1 {
+          font-size: 2.6rem;
+        }
+
+        h2 {
+          font-size: 2.2rem;
+        }
       }
     }
   }

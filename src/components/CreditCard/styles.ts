@@ -76,7 +76,7 @@ export const CardFrontContainer = styled.div<ICardProps>`
   }
 
   section {
-    > p {
+    > h1 {
       font-size: 1.4rem;
     }
 
@@ -85,11 +85,11 @@ export const CardFrontContainer = styled.div<ICardProps>`
       justify-content: space-between;
       margin-top: 1.5rem;
 
-      > p {
+      > h2 {
         font-size: 1.2rem;
       }
 
-      p:first-child {
+      h2:first-child {
         white-space: nowrap;
         flex: 0 0 80%;
         overflow: hidden;
