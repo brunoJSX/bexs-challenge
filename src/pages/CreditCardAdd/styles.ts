@@ -61,7 +61,8 @@ export const Header = styled.header`
 
   > div:nth-child(2) {
     display: flex;
-    padding: 0 3rem;
+    align-items: center;
+    padding: 0 4rem;
 
     img {
       width: 3.8rem;
@@ -72,6 +73,19 @@ export const Header = styled.header`
       margin-left: 1.7rem;
       flex: 1;
       font-size: 1.6rem;
+    }
+
+    @media (min-width: 1024px) {
+      padding: 0;
+
+      h2 {
+        font-size: 2rem;
+      }
+
+      img {
+        width: 4.75rem;
+        height: 4.75rem;
+      }
     }
   }
 
