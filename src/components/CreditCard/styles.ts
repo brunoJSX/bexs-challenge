@@ -108,17 +108,10 @@ export const CardBackContainer = styled.div<ICardProps>`
 
   > span {
     position: absolute;
-
-    top: 48%;
-    left: 50%;
     color: #3c3c3c;
 
-    ${({ isDefinedBrand }) =>
-    isDefinedBrand &&
-    css`
-        top: 64%;
-        left: 64%;
-      `}
+    top: ${({ isDefinedBrand }) => (isDefinedBrand ? '48%' : '48%')};
+    left: ${({ isDefinedBrand }) => (isDefinedBrand ? '50%' : '50%')};
   }
 
   background: url(${CardBackEmpty}),
