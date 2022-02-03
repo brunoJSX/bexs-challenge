@@ -3,12 +3,14 @@ import { FiChevronLeft } from 'react-icons/fi';
 import { BsInfoCircleFill } from 'react-icons/bs';
 import Yup from '@utils/schemaValidator';
 
+import { useUserApi, ICreditCard } from '@hooks/UserApi';
+
 import CreditCardIcon from '@assets/icons/credit_card_icon.svg';
 
 import { CreditCard } from '@components/CreditCard';
 import { Input } from '@components/Input';
-
 import { Select } from '@components/Select';
+
 import {
   Container,
   Header,
@@ -52,6 +54,8 @@ export function CreditCardAdd() {
   });
   const [cardCvv, setCardCvv] = useState('');
 
+  const { addCreditCard } = useUserApi();
+
   const handleExpirationDate = useCallback((e: FormEvent<HTMLInputElement>) => {
     const { value } = e.currentTarget;
 
@@ -62,6 +66,29 @@ export function CreditCardAdd() {
       year: Number(year) || 0,
     });
   }, []);
+
+  const handleFinishWizard = useCallback(
+    async (data: ICreditCard) => {
+      const hasAdded = await addCreditCard('person-id', {
+        cardNumber: data.cardNumber,
+        personName: data.personName,
+        cardExpiration: data.cardExpiration,
+        cardCvv: data.cardCvv,
+        installments: data.installments,
+      });
+
+      if (!hasAdded) {
+        // eslint-disable-next-line no-console
+        console.error('Error adding credit card');
+
+        return;
+      }
+
+      // eslint-disable-next-line no-console
+      console.log('Credit card added successfully!');
+    },
+    [addCreditCard],
+  );
 
   return (
     <Container>
@@ -89,7 +116,7 @@ export function CreditCardAdd() {
       </Header>
 
       <Content>
-        <WizardStyled>
+        <WizardStyled onFinish={handleFinishWizard}>
           <CreditCardStep title="Carrinho" schemaValidation={schema}>
             <Input
               label="Número do cartão"

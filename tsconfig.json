@@ -36,6 +36,9 @@
       ],
       "@services/*": [
         "services/*"
+      ],
+      "@hooks/*": [
+        "hooks/*"
       ]
     },
   },
