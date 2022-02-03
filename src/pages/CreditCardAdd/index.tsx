@@ -96,7 +96,7 @@ export function CreditCardAdd() {
               name="cardNumber"
               mask="creditCardNumber"
               defaultValue=""
-              onChange={e => setCardNumber(e.currentTarget.value)}
+              onChange={e => setCardNumber(e.currentTarget.value as any)}
             />
             <Input
               label="Nome (igual ao cartão)"
@@ -128,7 +128,7 @@ export function CreditCardAdd() {
             <Select
               label="Número de parcelas"
               name="installments"
-              options={installmentsOptions}
+              options={installmentsOptions as any}
             />
           </CreditCardStep>
 

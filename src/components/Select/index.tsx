@@ -11,7 +11,7 @@ import { Container, Label, Error } from './styles';
 interface ISelectProps extends ReactSelectProps<OptionProps> {
   name: string;
   label: string;
-  control: Control;
+  control?: Control;
   className?: string;
 }
 
@@ -24,7 +24,7 @@ export function Select({
   defaultValue,
   ...rest
 }: ISelectProps) {
-  const error = get(controlForm._formState.errors, name);
+  const error = get(controlForm?._formState.errors, name);
 
   const ControlComponent = useCallback(
     (props: any) => {
@@ -59,8 +59,8 @@ export function Select({
             }}
             options={options}
             defaultValue={
-              options?.find((option: any) => option.value === value) ||
-              defaultValue
+              (options?.find((option: any) => option.value === value) ||
+                defaultValue) as any
             }
             onChange={(option: any) => {
               if (rest.isMulti) {

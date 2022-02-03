@@ -1,3 +1,4 @@
+/* eslint-disable prettier/prettier */
 import styled, { css } from 'styled-components';
 
 import CardFrontEmpty from '@assets/icons/card-front-empty.svg';

@@ -59,7 +59,7 @@ function Wizard({
       if (React.isValidElement(child)) {
         if (
           child.type === WizardFormStep ||
-          child.type.target === WizardFormStep
+          (child.type as any).target === WizardFormStep
         ) {
           wizardSteps.push({
             title: child.props.title,
