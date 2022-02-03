@@ -79,6 +79,7 @@ export const CardFrontContainer = styled.div<ICardProps>`
   section {
     > h1 {
       font-size: 1.4rem;
+      font-weight: 400;
     }
 
     > div {
@@ -88,6 +89,7 @@ export const CardFrontContainer = styled.div<ICardProps>`
 
       > h2 {
         font-size: 1.2rem;
+        font-weight: 400;
       }
 
       h2:first-child {
