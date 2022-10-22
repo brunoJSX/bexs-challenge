@@ -107,7 +107,7 @@ export const Header = styled.header`
       bottom: calc((22.6rem * 0.45) * (-1));
 
       > div {
-        max-width: 37.5rem;
+        max-width: 36.6rem;
         max-height: 22.6rem;
       }
     }
@@ -119,7 +119,7 @@ export const Header = styled.header`
       padding-top: 3.2rem;
 
       > div {
-        height: 31rem;
+        height: 30.2rem;
         max-width: unset;
         max-height: unset;
 
