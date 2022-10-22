@@ -36,6 +36,9 @@ export const CardFrontContainer = styled.div<ICardProps>`
   flex-direction: column;
   justify-content: space-between;
 
+  -webkit-backface-visibility: hidden;
+  backface-visibility: hidden;
+
   width: 100%;
   height: 100%;
   position: absolute;
@@ -108,6 +111,9 @@ export const CardBackContainer = styled.div<ICardProps>`
   transform: rotateY(180deg);
   border-radius: 1rem;
   filter: drop-shadow(0px 3px 6px rgba(0, 0, 0, 0.349));
+
+  -webkit-backface-visibility: hidden;
+  backface-visibility: hidden;
 
   > span {
     position: absolute;
